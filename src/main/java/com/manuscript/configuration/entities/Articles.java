@@ -1,5 +1,7 @@
 package com.manuscript.configuration.entities;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
@@ -12,28 +14,36 @@ public class Articles {
 	
 	@Id
 	@Column(name="article_id")
+	@ApiModelProperty(notes = "Unique Article ID")
 	private int articleId;
 	
 	@Column(name="title")
+	@ApiModelProperty(notes = " Article Title")
 	private String title;
-	
+
+	@ApiModelProperty(notes = "Article Short Title")
 	@Column(name="short_title")
 	private String shortTitle;
 
+	@ApiModelProperty(notes = "Author Name who wrote this article")
 	@Column(name="author_name")
 	private String authorName;
-	
+
+	@ApiModelProperty(notes = "Email address of Author ")
 	@Column(name="author_email_adress")
 	private String authorEmailAddress;
 	
 	@Column(name="pages")
+	@ApiModelProperty(notes = "No of Pages in Manuscript")
 	private int pages;
    
 	@Column(name="is_active")
-	private int isActive;
+	@ApiModelProperty(notes = "shows whether author is active or not")
+	private boolean isActive;
 	
 	@Column(name="is_published")
-	private int isPublished;
+	@ApiModelProperty(notes = "shows whether manuscript is published or not")
+	private boolean isPublished;
 	
 	
 	
@@ -43,7 +53,7 @@ public class Articles {
 	}
 
 	public Articles(int articleId, String title, String shortTitle, String authorName, String authorEmailAddress,
-			int pages, int isActive, int isPublished) {
+			int pages, boolean isActive, boolean isPublished) {
 		super();
 		this.articleId = articleId;
 		this.title = title;
@@ -104,19 +114,19 @@ public class Articles {
 	}
 
 	
-	public int getIsActive() {
+	public boolean getIsActive() {
 		return isActive;
 	}
 
-	public void setIsActive(int isActive) {
+	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}
 
-	public int getIsPublished() {
+	public boolean getIsPublished() {
 		return isPublished;
 	}
 
-	public void setIsPublished(int isPublished) {
+	public void setIsPublished(boolean isPublished) {
 		this.isPublished = isPublished;
 	}
 
