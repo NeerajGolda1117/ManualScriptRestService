@@ -16,9 +16,9 @@ public interface ArticleService {
 
 	public Articles findId(int articleId);
 	
-	public void insertOrUpdateArticleDetails(Articles article);
+	public boolean insertOrUpdateArticleDetails(Articles article);
 	
-	public void deleteArticleDetails(int articleId);
+	public boolean deleteArticleDetails(int articleId);
 	
 	
 }

@@ -101,8 +101,8 @@ public class Articles {
 		return authorEmailAddress;
 	}
 
-	public void setAuthorEmailAdress(String authorEmailAdress) {
-		this.authorEmailAddress = authorEmailAdress;
+	public void setAuthorEmailAdress(String authorEmailAddress) {
+		this.authorEmailAddress = authorEmailAddress;
 	}
 
 	public int getPages() {

@@ -64,7 +64,7 @@ public class ArticleServiceImplementation implements ArticleService {
 
 
 	@Override
-	public void insertOrUpdateArticleDetails(Articles article) {
+	public boolean insertOrUpdateArticleDetails(Articles article) {
 		
 		Articles res;
 		
@@ -72,6 +72,7 @@ public class ArticleServiceImplementation implements ArticleService {
 			 res = articleres.save(article);
 			if (res.equals(article)) {
 				log.info("Details got inserted" + res.toString());
+				return true;
 			}
 			
 			
@@ -80,14 +81,15 @@ public class ArticleServiceImplementation implements ArticleService {
 			
 			log.error( "BOOOMMM! Did not inset article " + article.toString() ,new ManuscriptException("Did not inset article " + article.toString()).toString());
 		
-		
+		return false;
 		}
+		return false;
 	}
 
 
 
 	@Override
-	public void deleteArticleDetails(int articleId) {
+	public boolean deleteArticleDetails(int articleId) {
 		
 		 
 		
@@ -96,16 +98,16 @@ public class ArticleServiceImplementation implements ArticleService {
 				articleres.deleteById(articleId);
 				
 				log.info("Article details got deleted with articleid" + articleId);
-				
+				return true;
 				
 			} catch (Exception e) {
 				
 				
 				log.error( "BOOOMMM! Did not delete the Article with articleid  "+articleId ,new ManuscriptException("Did not delete the Article with articleid " + articleId).toString());
 			
-			
+			return false;
 			}
-		
+
 	}
 	
 

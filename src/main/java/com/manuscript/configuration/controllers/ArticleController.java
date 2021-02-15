@@ -57,12 +57,23 @@ public class ArticleController {
 		  @ApiOperation(value = "Save Article details in database",
 				  notes= "Provide an article details to store article details",
 				response = Articles.class)
-		  public void insertArticleDetails(@RequestBody Articles articledetails)
+		  public boolean insertArticleDetails(@RequestBody Articles articledetails)
 		  {
 			  log.info("Details are Updating");
-			  
-			  articleser.insertOrUpdateArticleDetails(articledetails);
-			  
+
+			boolean res	=  articleser.insertOrUpdateArticleDetails(articledetails);
+
+
+			  if (res)
+			  {
+				  log.info("Article got Updated with articleId " +articledetails.getArticleId());
+				  return true;
+
+			  }
+			  else {
+				  log.info("Article did not got Updated with articleId " + articledetails.getArticleId());
+			  }
+             return false;
 		  }
 
 		  
@@ -70,9 +81,19 @@ public class ArticleController {
 		  @ApiOperation(value = "delete an Article",
 				  notes= "Provide an articleId to delete article details",
 				  response= Articles.class)
-		  public void deleteArticleDetails(@PathVariable int articleId)
+		  public int deleteArticleDetails(@PathVariable int articleId)
 		  {
-			  log.info(articleId +"article is getting delete");
-			   articleser.deleteArticleDetails(articleId);
+			  log.info(articleId +" article is getting delete");
+
+			  boolean res = articleser.deleteArticleDetails(articleId);
+			   if (res)
+			   {
+				   log.info("Article got deleted with articleId " +articleId);
+
+			   }
+			   else {
+				   log.info("Article did not got deleted with articleId " + articleId);
+			   }
+			  return articleId;
 		  }
 }
