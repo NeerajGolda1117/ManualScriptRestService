@@ -70,6 +70,7 @@ public class ArticleServiceImplementation implements ArticleService {
 		
 		try {
 			 res = articleres.save(article);
+			 log.info(res.toString());
 			if (res.equals(article)) {
 				log.info("Details got inserted" + res.toString());
 				return true;

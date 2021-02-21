@@ -2,11 +2,7 @@ package com.manuscript.configuration.entities;
 
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.persistence.Column;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="article")
@@ -14,6 +10,7 @@ public class Articles {
 	
 	@Id
 	@Column(name="article_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@ApiModelProperty(notes = "Unique Article ID")
 	private int articleId;
 	

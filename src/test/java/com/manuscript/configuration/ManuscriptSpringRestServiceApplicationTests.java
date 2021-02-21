@@ -8,13 +8,17 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Optional;
+
 @SpringBootTest
+
 class ManuscriptSpringRestServiceApplicationTests {
 
 
@@ -24,6 +28,9 @@ class ManuscriptSpringRestServiceApplicationTests {
 
 	@InjectMocks
 	private ArticleController artcon;
+
+	@Autowired
+	ArticleRepository artrepo;
 
 	@Test
 	void testCreate() {
@@ -80,6 +87,26 @@ class ManuscriptSpringRestServiceApplicationTests {
 		assertEquals(articleId,articleId1);
 
 	}
+
+	@Test
+	public void TestGetRepository()
+	{
+
+		Articles article = new Articles();
+		article.setArticleId(2345);
+		article.setAuthorEmailAddress("sachin.dhodi@northgateps.com");
+		article.setAuthorName("Sachin dhodi");
+		article.setIsActive(true);
+		article.setIsPublished(true);
+		article.setTitle("Spring Boot");
+		article.setShortTitle("Camel");
+		article.setPages(15);
+
+         Optional<Articles> art =   artrepo.findById(article.getArticleId());
+         assertNotNull(art.get().getArticleId());
+
+	}
+
 
 
 }
